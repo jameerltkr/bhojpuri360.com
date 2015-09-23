@@ -4,39 +4,15 @@
 	<title></title>
 	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+<script type="text/javascript" src="Services/testService.js"></script>
+<script type="text/javascript" src="Controllers/testController.js"></script>
     <script>
     $.getJSON('http://www.localhost:3003/emp', function(data){
     console.log(data);
 });
 
 
-    /// <reference path="../angular.js" />
-var app;
-(function () {
-    app = angular.module("crudModule", []);
-})();
-
-app.service('crudService', function ($http) {
-	//Get All Employees
-    this.getEmployees = function () {
-        return $http.get("http://www.localhost:3003/emp"); 
-    }
-    });
-
-app.controller('crudController', function ($scope, crudService) {
-	//$scope.IsNewRecord = 1; //The flag for the new record
- 
-    loadRecords(); 
-	//Function to load all Employee records
-    function loadRecords() {
-        var promiseGet = crudService.getEmployees(); //The MEthod Call from service
- 
-        promiseGet.then(function (pl) { $scope.Employees = pl },
-              function (errorPl) {
-                  $log.error('failure loading Employee', errorPl);
-              });
-    }
-    });
+  
 
     </script>
 </head>

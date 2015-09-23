@@ -1,0 +1,38 @@
+{
+  "name": "bhojpuri360",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "body-parser": "~1.12.4",
+    "client-sessions": "~0.7.0",
+    "cookie-parser": "~1.3.5",
+    "dateformat": "~1.0.11",
+    "debug": "~2.2.0",
+    "express": "~4.12.4",
+    "jade": "~1.9.2",
+    "jsonwebtoken": "~5.0.1",
+    "mongoose": "~4.0.5",
+    "multer": "~0.1.8",
+    "node-uuid": "~1.4.3",
+    "path": "^0.12.7",
+    "serve-favicon": "~2.2.1",
+    "socket.io": "~1.3.5",
+    "stylus": "^0.52.4",
+    "underscore": "~1.8.3"
+  },
+  "bundleDependencies": [
+    "body-parser",
+    "client-sessions",
+    "cookie-parser",
+    "dateformat",
+    "debug",
+    "express",
+    "jade",
+    "jsonwebtoken",
+    "mongoose",
+    "multer",
+    "node-uuid",
+    "serve-favicon",
+    "underscore"
+  ]
+}

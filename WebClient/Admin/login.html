@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script type="text/javascript" src="js/admin-js.js"></script>
+    <script type="text/javascript" src="Controllers/userController.js"></script>
+    <script type="text/javascript" src="Scripts/userService.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/admin-style.css"/>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+</head>
+<body ng-app="adminApp">
+<div class="container" ng-controller="loginController">
+	<div class="login-container">
+            <div id="output"></div>
+            <div class="avatar"></div>
+            <div class="form-box">
+                <form action="" method="">
+                    <input ng-model="username" name="user" type="text" placeholder="username">
+                    <input ng-model="password" type="password" placeholder="password">
+                    <button class="btn btn-info btn-block login" type="button" data-ng-click="login()">Login</button>
+                </form>
+            </div>
+        </div>
+        <div ng-if="loginstatus == 'success'">
+            admin logged in
+        </div>
+        
+        
+</div>
+</body>
+</html>

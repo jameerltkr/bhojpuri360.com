@@ -102,6 +102,7 @@
   
 
     </script>
+    <!--<base href="http://www.w3schools.com/images/" target="_blank">-->
 </head>
 <body ng-app="crudModule">
 <div  id="tblContainer" ng-controller="crudController">
@@ -278,13 +279,14 @@
     </div>
 
     <div ng-controller="musicController">
+        <input type="text" ng-model="searchKeyword" placeholder="Type text for search"/>
         <table border="1" cellpadding="1" cellspacing="0">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
             </tr>
-            <tr ng-repeat="music in Music">
+            <tr ng-repeat="music in Music | filter:searchKeyword">
                 <td>{{music.id}}</td>
                 <td>{{music.name}}</td>
                 <td>{{music.description}}</td>

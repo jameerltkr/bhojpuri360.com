@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script type="text/javascript" src="../Controllers/userController.js"></script>
+	<script type="text/javascript" src="../Scripts/userService.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+</head>
+<body ng-app="adminApp" ng-controller="fileUploadController">
+<input type="text" ng-model="song_name" placeholder="Song Name"/><br/>
+<input type="text" ng-model="album_name" placeholder="Album Name"/><br/>
+Select Song<input type="file" id="song" name="song" multiple><br/>
+Song Cover Photo<input type="file" id="cover_photo" name="cover_photo" multiple><br/>
+Album Photo <input type="file" id="album_photo" name="album_photo" multipart/><br/>
+<input type="button" value="Upload" data-ng-click="add()"/>
+</body>
+</html>

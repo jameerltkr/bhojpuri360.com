@@ -72,6 +72,10 @@ require('./routes/restapi')(app, socket);
 
 require('./routes/restapi-admin-login')(app, socket);
 
+require('./routes/restapi-web')(app, socket);
+
+require('./routes/restapi-admin')(app, socket);
+
 
 // Starting the server for listening on PORT whatever
 http.listen(port, function () {

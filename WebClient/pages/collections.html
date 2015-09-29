@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html ng-app="songAppWeb">
+<head ng-controller="titleController">
+<title >{{title}} :: Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+
+<!-- Angular : Start -->
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+<script type="text/javascript" src="../Controllers/homeController.js"></script>
+<script type="text/javascript" src="../Scripts/config.js"></script>
+<script type="text/javascript" src="../Services/homeService.js"></script>
+<!-- Angular : End -->
+
+</head>
+<body>
+<div class="menu-bg" ng-controller="menuController">
+<div class="wrap">
+	<div class="menu">
+    	<ul class="nav" >
+           	<li ng-repeat="Menu in MenuItems">
+           		<a href="/{{Menu.menu_url}}">{{Menu.menu_name}}</a>
+           	</li>
+        </ul>
+	</div>
+	<div class="soc-icons">
+		<ul>
+			<li><a href="">Get In Touch&nbsp;</a></li>
+			<li><a href=""><img src="../images/facebook.png" alt="" /></a></li>
+			<li><a href=""><img src="../images/twitter.png" alt="" /></a></li>
+			<li><a href=""><img src="../images/gplus.png" alt="" /></a></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+</div>
+<div class="header-bg">
+<div class="wrap">
+<div class="header">
+	<div class="logo">
+		<a href="../index.html"><img src="../images/logo.png" alt="" title="logo"></a>
+	</div>
+	<div class="shopping_cart">
+		<div class="cart">
+			<a href="#" title="View my shopping cart" rel="nofollow">
+				<strong class="opencart"> </strong>
+				<span class="cart_title">Cart</span>
+				<span class="no_product">(empty)</span>
+			</a>
+		</div>
+	</div>
+	<div class="foot-search">
+			<form>
+				<input type="text" value="keyword here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'keyword here';}">
+				<input type="submit" value="Search">
+			  </form>
+		  </div>
+   <div class="clear"></div>
+</div>
+</div>
+</div>
+</body>
+</html>

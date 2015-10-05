@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script type="text/javascript" src="../Controllers/userController.js"></script>
+	<script type="text/javascript" src="../Scripts/userService.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+</head>
+<body ng-app="adminApp" >
+
+<div ng-controller="featuredAlbumController" style="float:left">
+
+	<input type="text" ng-model="song_name" placeholder="Song Name"/><br/>
+
+	<input type="text" ng-model="album_name" placeholder="Album Name"/><br/>
+
+	Select Cover Photo<input type="file" id="cover_photo" name="cover_photo"/><br/>
+
+	Select Singer<select id="singer_name" ng-model="singer_name"
+	ng-options="singer as singer.name for singer in Singers track by singer.singer_id">
+	<option value="">Select Singer</option>
+	</select><br/>
+
+	<input type="button" value="Upload" data-ng-click="add()"/>
+
+</div>
+<div style="float:left;" ng-controller="singerController">
+	<table border="1">
+		<tr>
+			<td><input type="text" placeholder="Enter singer name" ng-model="singer_name"/></td>
+		</tr>
+		<tr >
+			<td colspan="2"><input  type="button" value="Add" data-ng-click="AddSinger()"/></td>
+		</tr>
+	</table>
+</div>
+
+</body>
+</html>

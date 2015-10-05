@@ -1,6 +1,9 @@
 /* Music model */
 var mongoose = require('mongoose');
+
 var song = mongoose.Schema({
+    song_id: String,
+    faid: String,
     name: String,
     album_name: String,
     cover_photo: String,
@@ -8,12 +11,36 @@ var song = mongoose.Schema({
     album_photo: String,
     album_photo_url: String,
     uploaded_on: String,
+    release_date: String,
     size: String,
     duration: String
 });
 
+var featured_album = mongoose.Schema({
+    faid: String,
+    singer_id: String,
+    song_name: String,
+    album_name: String,
+    cover_photo_name: String,
+    cover_photo_url: String,
+    release_date: String,
+    date_added: String
+})
+
+var singer_name = mongoose.Schema({
+    singer_id: String,
+    faid: String,
+    song_id: String,
+    name: String
+
+})
+
 var Song = mongoose.model('Song', song);
+var Featured_Album = mongoose.model('Featured_Album', featured_album);
+var Singer_Name = mongoose.model('Singer_Name', singer_name);
 
 module.exports = {
-    Song: Song
+    Song: Song,
+    Featured_Album: Featured_Album,
+    Singer_Name: Singer_Name
 };

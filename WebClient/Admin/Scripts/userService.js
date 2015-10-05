@@ -30,3 +30,56 @@ var userService = angular.module('userService', [])
 
 })
 
+.service('featuredAlbumService', function ($http, ENV, $q){
+	this.getAlbums = function (parameter, file){
+		var fd = new FormData();
+
+		var d = $q.defer();
+
+		fd.append('file', file);
+		fd.append('parameter', parameter);
+
+		var result = $http.post(ENV.baseUrl + '/upload-album?song_name=' + JSON.parse(parameter).song_name, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(function(data){
+          console.log('sssss')
+
+          d.resolve(result);
+
+          return data;
+        })
+        .error(function(err){
+          console.log(err);
+        });
+
+        return d.promise;
+	}
+
+  this.getSingers = function(){
+    return $http.get(ENV.baseUrl.substr(0,ENV.baseUrl.length-6) + "/web/get-singer-list"); 
+  }
+})
+
+
+.service('singerService', function ($http, ENV, $q){
+  this.addSinger = function (data){
+
+    var d = $q.defer();
+
+    var result = $http.post(ENV.baseUrl + '/add-singer', JSON.stringify({singer_name: data}))
+        .success(function(data){
+          console.log('sssss')
+          
+          d.resolve(result);
+
+          return data;
+        })
+        .error(function(err){
+          console.log(err);
+        });
+
+        return d.promise;
+  }
+})

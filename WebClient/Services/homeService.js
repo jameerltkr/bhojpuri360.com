@@ -8,3 +8,14 @@ var testService = angular.module('homeService', [])
       return $http.get(ENV.apiBaseUrl + "/site-menu"); 
     }
 })
+
+.service('albumService', function ($http, ENV){
+	this.getAlbums = function(){
+		return $http.get(ENV.apiBaseUrl + "/get-albums"); 
+	}
+
+	this.getSingers = function(){
+		return $http.get(ENV.apiBaseUrl + "/get-singer-list"); 
+	}
+})
+

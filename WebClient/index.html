@@ -13,11 +13,14 @@
 <script type="text/javascript" src="Controllers/homeController.js"></script>
 <script type="text/javascript" src="Scripts/config.js"></script>
 <script type="text/javascript" src="Services/homeService.js"></script>
+<script type="text/javascript" src="Filter/homeFilter.js"></script>
 <!-- Angular : End -->
 
 <!--slider-->
 <script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/loadingPanel.js"></script>
+<script type="text/javascript" src="js/jquery.blockUI.js"></script>
 		<script type="text/javascript" src="js/jquery.gallery.js"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -28,6 +31,7 @@
 		</script>
 </head>
 <body>
+<script> showLoadingPanel(); </script>
 <div class="menu-bg" ng-controller="menuController">
 <div class="wrap">
 	<div class="menu">
@@ -99,90 +103,81 @@
 <div class="content-bg">
 <div class="wrap">
 <div class="main">
-<div class="content">
+<div class="content" ng-controller="albumController">
 	<h2>Featured Albums</h2>
 			<div class="section group">
-				<div class="grid_1_of_3 images_1_of_3">
-					 <a href="details.html"><img src="images/pic1.jpg" alt="" /></a>
-					 <a href="details.html"><h3>Lorem Ipsum</h3></a>
+
+				<div>
+					<select id="filterByDate" ng-model="filterByDate">
+						<option value="">Filter By Date</option>
+						<option value="Between 1 month">Between 1 month</option>
+						<option value="Between 3 month">Between 3 month</option>
+						<option value="Between 6 month">Between 6 month</option>
+						<option value="Between 1 year">Between 1 year</option>
+						<option value="more than 1 year">&gt; 1 year old</option>
+					</select>
+					<select id="filterBySingerName" ng-model="filterBySingerName" data-ng-options="singer as singer.name for singer in Singers track by singer.singer_id">
+						<option value="">Filter By Singer</option>
+					</select>
+					<select id="sortData" ng-model="sortData">
+						<option value="">Select Option to Sort</option>
+						<option value="song_name">By Name (Ascending)</option>
+						<option value="-song_name">By Name (Descending)</option>
+					</select>
+				</div>
+
+				<div  class="grid_1_of_3 images_1_of_3" ng-repeat="album in Albums | filterByDate:filterByDate | filterBySingerName:filterBySingerName | orderBy:sortData" >
+					 <a href="details/get.html?song={{album.song_name}}"><img src="{{baseUrl}}/get-album-images/{{album.cover_photo_name}}" alt="" /></a>
+					 <a href="details/get.html?song={{album.song_name}}"><h3>{{album.song_name}}</h3></a>
 				     <span class="price"><sup>$32.88</sup><sub>pm</sub></span>
 				     <div class="btn">
-				     	<a href="details.html">Add to Cart</a>
+				     	<a href="details/get.html?song={{album.song_name}}">More Info</a>
 				     </div>
 				</div>
-				<div class="grid_1_of_3 images_1_of_3">
-					 <a href="details.html"><img src="images/pic2.jpg" alt="" /></a>
-					  <a href="details.html"><h3>Lorem Ipsum</h3></a>
-				      <span class="price"><sup>$21.00</sup><sub>pm</sub></span>
-				       <div class="btn">
-				     	<a href="details.html">Add to Cart</a>
-				     </div>
-				</div>
-				<div class="grid_1_of_3 images_1_of_3">
-					 <a href="details.html"><img src="images/pic3.jpg" alt=""/></a>
-					  <a href="details.html"><h3>Lorem Ipsum</h3></a>
-					  <span class="price"><sup>$23.78</sup><sub>pm</sub></span>
-				       <div class="btn">
-				     	<a href="details.html">Add to Cart</a>
-				     </div>
-				</div>
-					<div class="grid_1_of_3 images_1_of_3">
-					  <a href="details.html"><img src="images/pic4.jpg"alt=""/></a>
-					  <a href="details.html"><h3>Lorem Ipsum</h3></a>
-					  <span class="price"><sup>$69.66</sup><sub>pm</sub></span>
-				      <div class="btn">
-				     	<a href="">Add to Cart</a>
-				     </div>
-				</div>	
-				<div class="grid_1_of_3 images_1_of_3">
-					  <a href="details.html"><img src="images/pic4.jpg"alt=""/></a>
-					  <a href="details.html"><h3>Lorem Ipsum</h3></a>
-					  <span class="price"><sup>$69.66</sup><sub>pm</sub></span>
-				      <div class="btn">
-				     	<a href="">Add to Cart</a>
-				     </div>
-				</div>	
+				<!--<a ng-show="" class="ng-cloak" ng-click="loadMoreAlbums()" href="">Load More</a>-->
+
+
 			</div>
 			<h2 class="bg">Our Specials</h2>
 			<div class="section group">
 				<div class="grid_1_of_3 images_1_of_3">
-					 <a href="details.html"><img src="images/pic5.jpg" alt="" /></a>
-					 <a href="details.html"><h3>Lorem Ipsum</h3></a>
+					 <a href="details/get.html"><img src="images/pic5.jpg" alt="" /></a>
+					 <a href="details/get.html"><h3>Lorem Ipsum</h3></a>
 					<span class="price"><sup>$12.31</sup><sub>pm</sub></span>
 				     <div class="btn">
-				     	<a href="details.html">Add to Cart</a>
+				     	<a href="details/get.html">Download</a>
 				     </div>
 				</div>
 				<div class="grid_1_of_3 images_1_of_3">
-					  <a href="details.html"><img src="images/pic6.jpg" alt="" /></a>
-					  <a href="details.html"><h3>Lorem Ipsum</h3></a>
+					  <a href="details/get.html"><img src="images/pic6.jpg" alt="" /></a>
+					  <a href="details/get.html"><h3>Lorem Ipsum</h3></a>
 					<span class="price"><sup>$69.66</sup><sub>pm</sub></span>
 			        <div class="btn">
-				     	<a href="details.html">Add to Cart</a>
+				     	<a href="details/get.html">Download</a>
 				     </div>
 				</div>
 				<div class="grid_1_of_3 images_1_of_3">
-					 <a href="details.html"><img src="images/pic7.jpg" alt="" /></a>
-					  <a href="details.html"><h3>Lorem Ipsum</h3></a>
+					 <a href="details/get.html"><img src="images/pic7.jpg" alt="" /></a>
+					  <a href="details/get.html"><h3>Lorem Ipsum</h3></a>
 					 <span class="price"><sup>$31.21</sup><sub>pm</sub></span>
 			       <div class="btn">
-				     	<a href="details.html">Add to Cart</a>
+				     	<a href="details/get.html">Download</a>
 				     </div>
 				</div>
 				<div class="grid_1_of_3 images_1_of_3">
-					  <a href="details.html"><img src="images/pic8.jpg" alt=""/></a>
-					  <a href="details.html"><h3>Lorem Ipsum</h3></a>
+					  <a href="details/get.html"><img src="images/pic8.jpg" alt=""/></a>
+					  <a href="details/get.html"><h3>Lorem Ipsum</h3></a>
 					<span class="price"><sup>$69.66</sup><sub>pm</sub></span>
 				        <div class="btn">
-				     	<a href="details.html">Add to Cart</a>
+				     	<a href="details/get.html">Download</a>
 				     </div>
 				</div>
 				<div class="grid_1_of_3 images_1_of_3">
-					  <a href="details.html"><img src="images/pic4.jpg"alt=""/></a>
-					  <a href="details.html"><h3>Lorem Ipsum</h3></a>
+					  <a href="details/get.html"><img src="images/pic4.jpg"alt=""/></a>
+					  <a href="details/get.html"><h3>Lorem Ipsum</h3></a>
 					  <span class="price"><sup>$69.66</sup><sub>pm</sub></span>
 				      <div class="btn">
-				     	<a href="">Add to Cart</a>
+				     	<a href="">Download</a>
 				     </div>
 				</div>	
 			</div>
@@ -248,5 +243,6 @@
 			</div>	
 	</div>
 </div>
+<script> hideLoadingPanel(); </script>
 </body>
 </html>

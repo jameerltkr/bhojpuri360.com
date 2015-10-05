@@ -46,6 +46,8 @@ app.set('view engine', 'jade');
 // Setting public path where js and css will be kept
 app.use(require('stylus').middleware(path.join(__dirname, '/app/public')));
 app.use(express.static(path.join(__dirname, '/app/public')));
+//app.use(require('stylus').middleware(path.join(__dirname, '/files/albums')));
+app.use('/web/get-album-images', express.static(path.join(__dirname, '/files/albums')));
 
 // Use body parser for getting the parameter values
 app.use(bodyParser.json());       // to support JSON-encoded bodies

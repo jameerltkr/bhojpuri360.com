@@ -98,3 +98,69 @@ app.controller('fileUploadController', function ($scope, ENV, $http){
 
 }
 });
+
+app.controller('featuredAlbumController', function ($scope, featuredAlbumService, $window){
+  $scope.add = function(){
+  var cover_photo = document.getElementById('cover_photo').files[0];
+
+  var parameter = JSON.stringify({
+      song_name:$scope.song_name, 
+      album_name:$scope.album_name,
+      singer_name: $scope.singer_name.name,
+      singer_id: $scope.singer_name.singer_id
+    });
+
+  var albums = featuredAlbumService.getAlbums(parameter, cover_photo);
+
+  albums.then(function(data){
+    console.log(data);
+
+    if(data.data.status == true){
+
+      clearControls();
+
+      $window.location.reload();
+
+      alert(data.data.message);
+    }else{
+      alert(data.data.message);
+    }
+
+    //$scope.Albums = data;
+  },function(err){
+    alert(err);
+  })
+
+
+}
+
+// fill filter singer dropdown
+
+  var singers = featuredAlbumService.getSingers();
+
+  singers.then(function (singer){
+    $scope.Singers = singer.data;
+  }, function (err){
+    alert('Error while getting singer list');
+  })
+})
+
+app.controller('singerController', function ($scope, singerService){
+
+  $scope.AddSinger = function(){
+
+    var singer_name = $scope.singer_name;
+
+    singerService.addSinger(singer_name)
+      .then(function (data){
+        alert(data.data)
+      })
+
+  }
+
+})
+
+function clearControls(){
+  $song_name = "";
+  $album_name = "";
+}

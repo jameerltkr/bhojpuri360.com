@@ -161,6 +161,6 @@ app.controller('singerController', function ($scope, singerService){
 })
 
 function clearControls(){
-  $song_name = "";
-  $album_name = "";
+  $scope.song_name = "";
+  $scope.album_name = "";
 }

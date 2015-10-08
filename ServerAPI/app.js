@@ -9,6 +9,7 @@ var stylus = require('stylus');
 var bodyParser = require('body-parser');
 var session = require('client-sessions');
 var mongoose = require('mongoose');
+var busboy = require('connect-busboy'); //middleware for form/file upload
 var port = process.env.PORT || 3003;
 
 var config = require('./app/db/config');     //Calling configuration file
@@ -42,6 +43,8 @@ app.use(function (req, res, next) {
 // Setting the views 
 app.set('views', path.join(__dirname, '/app/views'));
 app.set('view engine', 'jade');
+
+app.use(busboy());
 
 // Setting public path where js and css will be kept
 app.use(require('stylus').middleware(path.join(__dirname, '/app/public')));

@@ -5,7 +5,7 @@ var app;
 
 app.controller('queryStringController', function ($scope, $location, getDetailsFromQS){
 	
-	if($location.$$absUrl.indexOf('details/get/song/') > -1)
+	if($location.$$absUrl.indexOf('/details/get/song/') > -1)
 	{
 		var paramValue = $location.$$absUrl.substr($location.$$absUrl.lastIndexOf('/')+1, $location.$$absUrl.length)
 

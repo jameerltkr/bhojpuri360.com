@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Upload details to website</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="../css/preview.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css" />
+
+
+    <!-- Angular js :String-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+    <script type="text/javascript" src="../Controllers/uploadcontroller.js"></script>
+    <script type="text/javascript" src="../Scripts/uploadservice.js"></script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <!-- Angular Js: End-->
+
+    <!-- Loadig panel  -->
+    <!--<script type="text/javascript" src="../js/jquery.min-2.js"></script>-->
+    <script type="text/javascript" src="../js/loadingPanel.js"></script>
+    <script type="text/javascript" src="../js/jquery.blockUI.js"></script>
+
+    <!--[if IE 7]>
+        <link href="styles/font-awesome-ie7.min.css" rel="stylesheet" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <style type="text/css">
+        .navbar-inner{
+            filter:none;
+        }
+         </style>
+        <![endif]-->
+</head>
+<body class=" " ng-app="adminApp">
+  
+<script> showLoadingPanel(); </script>
+
+    <div class="container">
+
+
+    
+
+
+        <div class="row-fluid" id="demo-6">
+            <div class="span10 offset1">
+                <h4>Admin Panel</h4>
+                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow papper-stack track-url auto-scroll">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#panel6-1-1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Add Featured Album</span></a></li>
+                        <li><a href="#panel6-1-2" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Add Singer</span></a></li>
+                        <li><a href="#panel6-1-3" data-toggle="tab"><i class="icon-key"></i>&nbsp;<span>Add Songs</span></a></li>
+                        <li><a href="#panel6-1-4" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Add Videos</span></a></li>
+                    </ul>
+                    <div class="tab-content ">
+                        <div class="tab-pane active" id="panel6-1-1" ng-controller="FAController">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    <h4><i class="icon-user"></i>&nbsp;&nbsp; Add Featured albums</h4>
+
+                                    <label>Album Name</label>
+                                    <input type="text" ng-model="album_name" class="input-block-level" />
+                                    <label>Release Date</label>
+                                    <div class="">
+                                        <div class="">
+                                            <div class=''>
+                                                <input type='text' ng-model="parent.release_date" class="input-block-level" id='datetimepicker4' />
+                                            </div>
+                                            <script type="text/javascript">
+                                        $(function () {
+                                            $('#datetimepicker4').datetimepicker();
+                                        });
+                                    </script>
+                                        </div>
+                                    </div>   
+                                    <label>Select Cover Photo</label>
+                                    <input type="file" class="input-block-level" id="cover_photo" name="cover_photo"/>
+
+                                    <label>Add Singers to Album</label>
+                                    <input type="text" ng-model="add_singer" ng-keyup="$event.keyCode == 13 ? add_items_to_list() : null" class="input-block-level" />
+                                    <span ng-model="singer_list" ng-repeat="singer in singer_list track by singer.id" id="singers">{{singer.name}}{{$last ? '' : ', '}}</span>
+                                    
+                                    <br />
+
+                                    <button type="button" data-ng-click="add_fa()" class="btn btn-success">Add Album</button>
+
+                                </div>
+                                <!--<div class="span3">
+                                    <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
+                                    <div class="socials clearfix">
+                                        <a class="icon-facebook facebook"></a>
+                                        <a class="icon-twitter twitter"></a>
+                                        <a class="icon-google-plus google-plus"></a>
+                                        <a class="icon-pinterest pinterest"></a>
+                                        <a class="icon-linkedin linked-in"></a>
+                                        <a class="icon-github github"></a>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <h4><i class="icon-question"></i>&nbsp;&nbsp;Registration</h4>
+                                    <div class="box">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel.
+                                        </p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in.
+                                        </p>
+                                    </div>
+                                    <div class="box">
+                                        Don't Have An Account.<br />
+                                        Click Here For <a href="#panel2" data-toggle="tab">Free Register</a>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="panel6-1-2" ng-controller="singerController">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    <h4><i class="icon-user"></i>&nbsp;&nbsp; Add Singers Here</h4>
+
+
+                                    <label>Singer Name</label>
+                                    <input type="text" ng-model="singer_name" class="input-block-level" />
+
+                                    <button type="button" data-ng-click="AddSinger()" class="btn btn-primary">Add Singer</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="panel6-1-3" ng-controller="songController">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    <h4><i class="icon-unlock"></i>&nbsp;&nbsp;Add Song Here</h4>
+
+                                    <label>Song Name</label>
+                                    <input type="text" ng-model="song_name" class="input-block-level" />
+                                    <label>Release Date</label>
+                                    <div class="">
+                                        <div class="">
+                                            <div class=''>
+                                                <input type='text' ng-model="parent.release_date" class="input-block-level" id='song_release_date' />
+                                            </div>
+                                            <script type="text/javascript">
+                                        $(function () {
+                                            $('#song_release_date').datetimepicker();
+                                        });
+                                    </script>
+                                        </div>
+                                    </div>   
+                                    <label>Choose Album (Floating)</label>
+                                    <select ng-model="video_album_list" class="input-block-level" data-ng-options="album as album.album_name for album in Albums track by album.faid">
+                                        <option disabled="disabled" value="" selected="selected">---Select---</option>
+                                    </select>
+                                    <label>Select Singers (Floating)</label>
+                                    <select ng-model="singer_list" ng-change="select_singers()" class="input-block-level" data-ng-options="singer as singer.name for singer in Singers track by singer.singer_id">
+                                        <option disabled="disabled" value="" selected="selected">---Select---</option>
+                                    </select>
+
+                                     <span style="color:green" ng-model="video_singer_list_span" ng-repeat="singer in singer_list_show track by singer.id">{{singer.name}}{{$last ? '' : ', '}}</span>
+                                    <label>Select Song File
+                                    </label>
+                                    <input type="file" id="song_file" name="song_file" multiple>
+                                    <label>Select Cover Photo</label>
+                                    <input type="file" id="song_cover_photo" name="song_cover_photo" multiple>
+                                    <br />
+                                    <br />
+                                    <button type="button" data-ng-click="addSong()" class="btn btn-default">Add Song</button>
+                                </div>
+                               
+                            </div>
+
+
+                        </div>
+                        <div id="panel6-1-4" class="tab-pane" ng-controller="videoController">
+                            <div class="row-fluid">
+                                <div class="span5">
+                                    <h4><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Add Videos Here</h4>
+                                    <label>Video Name</label>
+                                    <input type="text" ng-model="video_name" value="" id="Text15" class="input-block-level" />
+                                    <label>Choose Album (Floating)</label>
+                                    <select ng-model="video_album_list" class="input-block-level" data-ng-options="album as album.album_name for album in Albums track by album.faid">
+                                        <option disabled="disabled" value="" selected="selected">---Select---</option>
+                                    </select>
+                                    <label>Select Singers (Floating)</label>
+                                    <select ng-model="singer_list" ng-change="select_singers()" class="input-block-level" data-ng-options="singer as singer.name for singer in Singers track by singer.singer_id">
+                                        <option disabled="disabled" value="" selected="selected">---Select---</option>
+                                    </select>
+
+                                     <span style="color:green" ng-model="video_singer_list_span" ng-repeat="singer in singer_list_show track by singer.id">{{singer.name}}{{$last ? '' : ', '}}</span>
+                                     <br/>
+                                    <label>Select Song File
+                                    </label>
+                                    <input type="file" id="video_file" name="video_file" multiple>
+                                    <label>Release Date</label>
+                                    <div class="">
+                                        <div class="">
+                                            <div class=''>
+                                                <input type='text' ng-model="parent.release_date" class="input-block-level" id='video_release_date' />
+                                            </div>
+                                            <script type="text/javascript">
+                                        $(function () {
+                                            $('#video_release_date').datetimepicker();
+                                        });
+                                    </script>
+                                        </div>
+                                    </div>   
+                                    <button type="button" data-ng-click="add_videos()" class="btn btn-info">Add Video</button>
+                                </div>
+                               
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      
+
+    </div>
+
+
+
+    <!--<script src="../js/jquery-1.9.1.min.js"></script>-->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/tabs-addon.js"></script>
+
+    
+    <script type="text/javascript" src="../js/moment.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-datetimepicker.min.js"></script>
+
+    
+<script> hideLoadingPanel(); </script>
+</body>
+</html>
